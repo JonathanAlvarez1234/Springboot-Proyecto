@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.jonathanalvarez.webapp.biblioteca.model.Categoria;
 
-public class ICategoriaService {
+public interface ICategoriaService {
 
     public List<Categoria> listarCategorias();
 
