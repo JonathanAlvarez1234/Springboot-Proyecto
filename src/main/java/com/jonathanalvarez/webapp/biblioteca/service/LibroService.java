@@ -9,29 +9,31 @@ import com.jonathanalvarez.webapp.biblioteca.model.Libro;
 import com.jonathanalvarez.webapp.biblioteca.repository.LibroRepository;
 
 @Service
-public interface  LibroService implements ILibroService {
+public class LibroService implements ILibroService {
+
+
     @Autowired
     LibroRepository libroRepository;
 
     @Override
-    public List<Libro> listarLibros(){
-        return libroRepository.findAll();
+    public Libro buscarLibroPorId(Long id) {
+        return libroRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Libro guardarLibro(Libro libro){
+    public void eliminarLibro(Libro libro) {
+        libroRepository.delete(libro);
+    }
+
+    @Override
+    public Libro guardarLibro(Libro libro) {
         return libroRepository.save(libro);
     }
 
     @Override
-    public Libro buscarLibroPorId(Long id){
-        return libroRepository.findById(id).orElse(null);   
+    public List<Libro> listarLibros() {
+        return libroRepository.findAll();
     }
-
-    @Override
-    public void eliminarLibro(Libro libro){
-        libroRepository.delete(libro);
-    }
-
     
+
 }
